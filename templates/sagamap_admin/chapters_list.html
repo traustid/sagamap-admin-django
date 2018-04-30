@@ -1,0 +1,20 @@
+{% extends "sagamap_admin/chapters_base.html" %}
+
+{% block title %}
+    Chapterss
+{% endblock %}
+
+{% block content %}
+    <h1>Chapterss</h1>
+    <h2><a href={% url "chapters_create" %}>Create new Chapters</a></h2>
+    <ul>
+    {% for chapters in chapters_list %}
+        <li><a href={% url "chapters_detail" chapters.pk %}>{{ chapters }}</a> | <a href={% url "chapters_update" chapters.pk %}>Update</a> | <form style="display:inline;" action={% url "chapters_delete" chapters.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ chapters }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form></li>
+    {% empty %}
+        <li>No Chapterss yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

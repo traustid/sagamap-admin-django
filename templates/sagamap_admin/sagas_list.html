@@ -1,0 +1,20 @@
+{% extends "sagamap_admin/sagas_base.html" %}
+
+{% block title %}
+    Sagass
+{% endblock %}
+
+{% block content %}
+    <h1>Sagass</h1>
+    <h2><a href={% url "sagas_create" %}>Create new Sagas</a></h2>
+    <ul>
+    {% for sagas in sagas_list %}
+        <li><a href={% url "sagas_detail" sagas.pk %}>{{ sagas }}</a> | <a href={% url "sagas_update" sagas.pk %}>Update</a> | <form style="display:inline;" action={% url "sagas_delete" sagas.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ sagas }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form></li>
+    {% empty %}
+        <li>No Sagass yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

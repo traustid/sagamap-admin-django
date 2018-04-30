@@ -1,0 +1,20 @@
+{% extends "sagamap_admin/users_base.html" %}
+
+{% block title %}
+    Userss
+{% endblock %}
+
+{% block content %}
+    <h1>Userss</h1>
+    <h2><a href={% url "users_create" %}>Create new Users</a></h2>
+    <ul>
+    {% for users in users_list %}
+        <li><a href={% url "users_detail" users.pk %}>{{ users }}</a> | <a href={% url "users_update" users.pk %}>Update</a> | <form style="display:inline;" action={% url "users_delete" users.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ users }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form></li>
+    {% empty %}
+        <li>No Userss yet.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

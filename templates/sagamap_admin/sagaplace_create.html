@@ -1,0 +1,16 @@
+{% extends "sagamap_admin/sagaplace_base.html" %}
+
+{% block title %}
+    Create Sagaplace
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "sagaplace_list" %}>Sagaplace</a></h1>
+<h2>Create Sagaplace</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+<a href={% url "sagaplace_list" %}>Cancel</a>
+{% endblock %}

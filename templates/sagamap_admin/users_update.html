@@ -1,0 +1,19 @@
+{% extends "sagamap_admin/users_base.html" %}
+
+{% block title %}
+    Update {{ users }}
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "users_list" %}>Users</a></h1>
+<h2>Update {{ users }}</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+<a href={% url "users_detail" users.pk %}>Cancel</a>
+<form style="display:inline;" action={% url "users_delete" users.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ users }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+</form>
+{% endblock %}

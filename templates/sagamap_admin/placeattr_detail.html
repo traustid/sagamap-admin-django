@@ -1,0 +1,14 @@
+{% extends "sagamap_admin/placeattr_base.html" %}
+
+{% block title %}
+    {{ placeattr }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "placeattr_list" %}>Placeattr</a></h1>
+    <h2>{{ placeattr }} | <a href={% url "placeattr_update" placeattr.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "placeattr_delete" placeattr.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ placeattr }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}

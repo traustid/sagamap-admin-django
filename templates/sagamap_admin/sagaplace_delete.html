@@ -1,0 +1,17 @@
+{% extends "sagamap_admin/sagaplace_base.html" %}
+
+{% block title %}
+    Delete {{ sagaplace }}
+{% endblock %}
+
+{% block content %}
+<h1>Delete {{ sagaplace }}</h1>
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete {{ sagaplace }}?</p>
+    <input type="submit" value="Confirm" />
+</form>
+
+<a href={% url "sagaplace_detail" sagaplace.pk %}>Cancel</a>
+
+{% endblock %}
