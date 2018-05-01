@@ -1,11 +1,11 @@
 from django import forms
-from .models import Chapters, Placeattr, Places, Sagaplace, Sagas, Users
+from .models import Chapter, Placeattr, Place, Sagaplace, Saga
 
 
-class ChaptersForm(forms.ModelForm):
+class ChapterForm(forms.ModelForm):
 
     class Meta:
-        model = Chapters
+        model = Chapter
         fields = ['title', 'chapter', 'text', 'saga']
         exclude = []
         widgets = None
@@ -15,13 +15,13 @@ class ChaptersForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(ChaptersForm, self).__init__(*args, **kwargs)
+        return super(ChapterForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(ChaptersForm, self).is_valid()
+        return super(ChapterForm, self).is_valid()
 
     def full_clean(self):
-        return super(ChaptersForm, self).full_clean()
+        return super(ChapterForm, self).full_clean()
 
     def clean_title(self):
         title = self.cleaned_data.get("title", None)
@@ -40,13 +40,13 @@ class ChaptersForm(forms.ModelForm):
         return saga
 
     def clean(self):
-        return super(ChaptersForm, self).clean()
+        return super(ChapterForm, self).clean()
 
     def validate_unique(self):
-        return super(ChaptersForm, self).validate_unique()
+        return super(ChapterForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(ChaptersForm, self).save(commit)
+        return super(ChapterForm, self).save(commit)
 
 
 class PlaceattrForm(forms.ModelForm):
@@ -96,10 +96,10 @@ class PlaceattrForm(forms.ModelForm):
         return super(PlaceattrForm, self).save(commit)
 
 
-class PlacesForm(forms.ModelForm):
+class PlaceForm(forms.ModelForm):
 
     class Meta:
-        model = Places
+        model = Place
         fields = ['lat', 'lng', 'name', 'type', 'info', 'info2', 'pkey', 'parish', 'county']
         exclude = []
         widgets = None
@@ -109,13 +109,13 @@ class PlacesForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(PlacesForm, self).__init__(*args, **kwargs)
+        return super(PlaceForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(PlacesForm, self).is_valid()
+        return super(PlaceForm, self).is_valid()
 
     def full_clean(self):
-        return super(PlacesForm, self).full_clean()
+        return super(PlaceForm, self).full_clean()
 
     def clean_lat(self):
         lat = self.cleaned_data.get("lat", None)
@@ -154,13 +154,13 @@ class PlacesForm(forms.ModelForm):
         return county
 
     def clean(self):
-        return super(PlacesForm, self).clean()
+        return super(PlaceForm, self).clean()
 
     def validate_unique(self):
-        return super(PlacesForm, self).validate_unique()
+        return super(PlaceForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(PlacesForm, self).save(commit)
+        return super(PlaceForm, self).save(commit)
 
 
 class SagaplaceForm(forms.ModelForm):
@@ -206,10 +206,10 @@ class SagaplaceForm(forms.ModelForm):
         return super(SagaplaceForm, self).save(commit)
 
 
-class SagasForm(forms.ModelForm):
+class SagaForm(forms.ModelForm):
 
     class Meta:
-        model = Sagas
+        model = Saga
         fields = ['title', 'info', 'defaultsaga', 'type', 'visible']
         exclude = []
         widgets = None
@@ -219,13 +219,13 @@ class SagasForm(forms.ModelForm):
         error_messages = {}
 
     def __init__(self, *args, **kwargs):
-        return super(SagasForm, self).__init__(*args, **kwargs)
+        return super(SagaForm, self).__init__(*args, **kwargs)
 
     def is_valid(self):
-        return super(SagasForm, self).is_valid()
+        return super(SagaForm, self).is_valid()
 
     def full_clean(self):
-        return super(SagasForm, self).full_clean()
+        return super(SagaForm, self).full_clean()
 
     def clean_title(self):
         title = self.cleaned_data.get("title", None)
@@ -248,58 +248,11 @@ class SagasForm(forms.ModelForm):
         return visible
 
     def clean(self):
-        return super(SagasForm, self).clean()
+        return super(SagaForm, self).clean()
 
     def validate_unique(self):
-        return super(SagasForm, self).validate_unique()
+        return super(SagaForm, self).validate_unique()
 
     def save(self, commit=True):
-        return super(SagasForm, self).save(commit)
-
-
-class UsersForm(forms.ModelForm):
-
-    class Meta:
-        model = Users
-        fields = ['uname', 'name', 'pass_field', 'type']
-        exclude = []
-        widgets = None
-        localized_fields = None
-        labels = {}
-        help_texts = {}
-        error_messages = {}
-
-    def __init__(self, *args, **kwargs):
-        return super(UsersForm, self).__init__(*args, **kwargs)
-
-    def is_valid(self):
-        return super(UsersForm, self).is_valid()
-
-    def full_clean(self):
-        return super(UsersForm, self).full_clean()
-
-    def clean_uname(self):
-        uname = self.cleaned_data.get("uname", None)
-        return uname
-
-    def clean_name(self):
-        name = self.cleaned_data.get("name", None)
-        return name
-
-    def clean_pass_field(self):
-        pass_field = self.cleaned_data.get("pass_field", None)
-        return pass_field
-
-    def clean_type(self):
-        type = self.cleaned_data.get("type", None)
-        return type
-
-    def clean(self):
-        return super(UsersForm, self).clean()
-
-    def validate_unique(self):
-        return super(UsersForm, self).validate_unique()
-
-    def save(self, commit=True):
-        return super(UsersForm, self).save(commit)
+        return super(SagaForm, self).save(commit)
 

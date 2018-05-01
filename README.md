@@ -1,1 +1,0 @@
-# sagamap-admin-django

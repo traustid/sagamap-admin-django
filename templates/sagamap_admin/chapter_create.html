@@ -1,0 +1,16 @@
+{% extends "sagamap_admin/chapter_base.html" %}
+
+{% block title %}
+    Create Chapter
+{% endblock %}
+
+{% block content %}
+<h1><a href={% url "chapter_list" %}>Chapter</a></h1>
+<h2>Create Chapter</h2>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+<a href={% url "chapter_list" %}>Cancel</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "sagamap_admin/place_base.html" %}
+
+{% block title %}
+    {{ place }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "place_list" %}>Place</a></h1>
+    <h2>{{ place }} | <a href={% url "place_update" place.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "place_delete" place.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ place }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "sagamap_admin/saga_base.html" %}
+
+{% block title %}
+    {{ saga }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "saga_list" %}>Saga</a></h1>
+    <h2>{{ saga }} | <a href={% url "saga_update" saga.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "saga_delete" saga.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ saga }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}

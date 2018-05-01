@@ -1,16 +1,16 @@
-{% extends "sagamap_admin/users_base.html" %}
+{% extends "sagamap_admin/saga_base.html" %}
 
 {% block title %}
-    Create Users
+    Create Saga
 {% endblock %}
 
 {% block content %}
-<h1><a href={% url "users_list" %}>Users</a></h1>
-<h2>Create Users</h2>
+<h1><a href={% url "saga_list" %}>Saga</a></h1>
+<h2>Create Saga</h2>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Create" />
 </form>
-<a href={% url "users_list" %}>Cancel</a>
+<a href={% url "saga_list" %}>Cancel</a>
 {% endblock %}

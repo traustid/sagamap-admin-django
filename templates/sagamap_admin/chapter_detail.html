@@ -1,0 +1,14 @@
+{% extends "sagamap_admin/chapter_base.html" %}
+
+{% block title %}
+    {{ chapter }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href={% url "chapter_list" %}>Chapter</a></h1>
+    <h2>{{ chapter }} | <a href={% url "chapter_update" chapter.pk %}>Update</a> | 
+    <form style="display:inline;" action={% url "chapter_delete" chapter.pk %} method="post" onsubmit="return confirm('Are you sure you want to delete {{ chapter }}?')">{% csrf_token %}
+    <input type="submit" value="Delete" />
+    </form>
+    </h2>
+{% endblock %}
