@@ -9,6 +9,9 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from string import Template
 from tinymce.models import HTMLField
+#from ckeditor.fields import RichTextField
+
+from .fields import SagaChapterField
 
 
 class Place(models.Model):
@@ -21,7 +24,6 @@ class Place(models.Model):
 	pkey = models.CharField(max_length=255)
 	parish = models.CharField(max_length=255)
 	county = models.CharField(max_length=255)
-
 
 	def map_tag(self):
 		values = {
@@ -77,7 +79,7 @@ class Placeattr(models.Model):
 
 class Saga(models.Model):
 	title = models.CharField(max_length=255)
-	info = models.TextField()
+	info = models.TextField(blank=True)
 	defaultsaga = models.BooleanField()
 	type = models.CharField(max_length=10)
 	visible = models.BooleanField()
@@ -93,8 +95,25 @@ class Saga(models.Model):
 class Chapter(models.Model):
 	title = models.CharField(max_length=255)
 	chapter = models.IntegerField()
-	text = HTMLField()
+	text = models.TextField()
 	saga = models.ForeignKey(Saga, on_delete=models.DO_NOTHING, db_column='saga')
+
+	def chapter_html_tag(self):
+		values = {
+			'html': str(self.text)
+		}
+		html_template = """
+			<div>${html}</div>
+		"""
+
+		template = Template(html_template)
+
+		chapter_html = template.substitute(values)
+
+		return mark_safe(chapter_html);
+
+	chapter_html_tag.short_description = 'Chapter text'
+	chapter_html_tag.allow_tags = True
 
 	def __str__(self):
 		return self.title+' ('+self.saga.title+')'
